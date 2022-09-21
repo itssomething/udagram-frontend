@@ -7,7 +7,7 @@ services:
 
 script:
   - docker build -t udagram-frontend .
-  - docker tag udagram-frontend manhvuduc/udagram-frontend
+  - docker tag udagram-frontend manhvuduc/udagram-frontend:v1
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
