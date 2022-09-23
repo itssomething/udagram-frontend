@@ -57,8 +57,6 @@ export class ApiService {
 
   async upload(endpoint: string, file: File, payload: any): Promise<any> {
     const signed_url = (await this.get(`${endpoint}/signed-url/${file.name}`)).url;
-    console.log('signed_url', signed_url)
-    console.log("upload 123")
     const headers = new HttpHeaders({'Content-Type': file.type});
     const req = new HttpRequest( 'PUT', signed_url, file,
                                   {
@@ -70,8 +68,6 @@ export class ApiService {
         this.http.request(req).subscribe((resp) => {
         if (resp && (<any> resp).status && (<any> resp).status === 200) {
           resolve(this.post(endpoint, payload));
-        } else {
-          console.log(resp)
         }
       });
     });
